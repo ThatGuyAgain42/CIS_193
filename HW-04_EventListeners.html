@@ -1,0 +1,87 @@
+<html>
+   <head>
+      <title>JavaScript Event Handler Test Page</title>
+      <SCRIPT type="text/javascript">
+         // =======================================
+         // DO NOT MODIFY ANY CODE ABOVE THIS LINE
+         // =======================================
+		 "use strict";
+		 
+		 function processKeyDown() {
+			const keyDown = document.getElementById("onkeydown_keycode");
+			const keyPress = document.getElementById("onkeypress_keycode");
+			
+			
+			// Sets innerText of table data to keyDown keyCode
+			keyDown.innerText = event.keyCode;
+			
+			
+			// If Shift, Backspace, Control, Delete or Pause is pressed,
+			// 	 Set the innerText of the table data of keyPress to an empty string
+			if (event.key == "Shift","Backspace","Control","Delete","Pause") {
+				keyPress.innerText = "";
+			}
+		 }
+		 
+		 // ==============================================================================
+		 
+		 function processKeyPress() {
+			const keyPress = document.getElementById("onkeypress_keycode");
+			
+			
+			// Sets innerText of table data to keyPress keyCode
+			keyPress.innerText = event.keyCode;
+		 }
+		 
+		 // ==============================================================================
+		 
+		 function processKeyUp() {
+			const keyUp = document.getElementById("onkeyup_keycode");
+			const keyDown = document.getElementById("onkeydown_keycode");
+			
+			
+			// If the keyUp is not a "Shift", sets the innerText of table data to keyUp keyCode
+			if (event.keyCode != 16) {
+				keyUp.innerText = event.keyCode;
+				
+			
+			// Makes sure the keyDown was also a "Shift" before setting the table data to the keyUp keyCode
+			} else if(keyDown.innerText == 16) {
+				keyUp.innerText = event.keyCode;
+			}
+			// Although this can happen with other combinations of key presses, it's most likely to happen with shift
+		 }
+		
+		 // =======================================
+         // DO NOT MODIFY ANY CODE BELOW THIS LINE
+         // =======================================       
+      </SCRIPT>
+   </head>
+   <body>
+      <h1>JavaScript Event KeyCode Test Page</h1>
+      <P>Input:
+         <INPUT id="input" type="text" value="" />
+      </P>
+      <TABLE border="1">
+         <THEAD>
+            <TR>
+               <TH></TH>
+               <TH>onKeyDown</TH>
+               <TH>onKeyPress</TH>
+               <TH>onKeyUp</TH>
+            </TR>
+         </THEAD>
+         <TR>
+            <TH>event.keyCode</TH>
+            <TD id="onkeydown_keycode"></TD>
+            <TD id="onkeypress_keycode"></TD>
+            <TD id="onkeyup_keycode"></TD>
+         </TR>
+      </TABLE>
+      <SCRIPT>
+         document.getElementById("input").onkeydown = processKeyDown;
+         document.getElementById("input").onkeypress = processKeyPress;
+         document.getElementById("input").onkeyup = processKeyUp;
+      </SCRIPT>
+   </body>
+</html>

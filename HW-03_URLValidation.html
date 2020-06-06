@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <body style="text-align:center;">
+      <!-- This is the webpage title area -->
+      <p id="titleArea" style="font-size: 20px; font-weight: bold;"></p>
+
+      <!-- This is the user textarea, where a URL is entered -->
+      <textarea id="textArea" cols="50">
+         http://www.pasadena.eduLinks to an external site.
+      </textarea>
+
+      <!-- This is the button area for validating the URL -->
+      <button onclick="validate()">
+         Validate
+      </button>
+
+      <!-- This is where the validation result is printed -->
+      <p id="outputArea" style="color:green;
+         font-size: 26px;
+         font-weight: bold;">
+      </p>
+
+      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+      <!-- !!! DO NOT MODIFY ANY CODE ABOVE THIS LINE !!! -->
+      <!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+      <script>
+	     /* 	[-DESCRIPTION-]
+		 Write a webpage using JavaScript to check whether a user-entered URL is 
+		 Invalid, Relative or Absolute. The webpage allows the user to 
+		 enter a URL in a textarea and check (by pressing the button) whether 
+		 the URL in Invalid, Relative, or Absolute. 
+		 The validation result is printed on the webpage, below the button. */
+		 
+         "use strict";
+		 
+		 // Set the Title of the Document
+		 document.getElementById("titleArea").innerText = 
+			"Enter a URL and check if it is Invalid, Relative or Absolute";
+		 
+		 // Separate function to test text box contents
+		 function urlChecker(testItem) {
+			let returnOutput = !!testItem ? // Unnecessarily checks if there's something in the text box (I wanted to apply what I learned in class)
+			(/^https?:\/\/(www\.)?\w+\.\w{2,4}\b(\w*)/.test(testItem)) ? "Absolute URL" :// Checks for Absolute URL pattern
+			(/^[\w\.]*\/?([\w\.]+\/{1})+[\w\.]+\/?/.test(testItem)) ? "Relative URL" :// This is the best I could come up with. Let me know if there's a better solution
+			"Invalid URL" : "Text box is empty, please type something first..."
+			return returnOutput;
+		 }
+		 // Run validate function when button is clicked
+		 function validate() {
+			const outputText = document.getElementById("outputArea");// Grabs outputArea element
+			let textContent = document.getElementById("textArea").value;// Grabs textArea contents
+			let outputValue = urlChecker(textContent);// Tests the value of the text box
+			outputText.innerText = outputValue;// Outputs the result from the urlChecker function
+		 
+		 }
+      </script>
+   </body>
+</html>

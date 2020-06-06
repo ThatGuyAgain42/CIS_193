@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+   <head>
+       <meta charset="utf-8">
+       <title>Welcome to JavaScript</title>
+       <script>
+           /*     [-PROMPT-]
+
+           Output should look like:
+
+            The year is [CURRENT_YEAR]
+            It is [CURRENT_WEEKDAY]: Day [DAY] of [CURRENT_MONTH] in the year [CURRENT_YEAR]
+            The time is [CURRENT_TIME_AM_OR_PM]
+
+            The year is 2020
+            It is Saturday: Day 7 of March in the year 2020
+            The time is 01:05pm
+           */
+           "use strict";
+
+           //Runs Clock Function Every 1000 Milliseconds
+           setInterval("clock()", 1000);
+
+           //Combats Military Time
+           function antiMilitary(hour) {
+             if (hour > 12) {
+               return hour - 12;
+             } else {
+               return hour;
+             }
+           }
+           //Returns Indexed Day
+           function dateDayString(day) {
+             let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+             return days[day];
+           }
+           //Returns Indexed Month
+           function dateMonthString(month) {
+             let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+             return months[month];
+           }
+           //Adds a Zero in Front of Every Single-digit Digit to Keep Things Consistant
+           function addZero(number) {
+             if (number < 10) {
+               return "0" + number;
+             } else {
+               return number;
+             }
+           }
+           //Returns Apprpriate Meridian
+           function getMeridian(hour) {
+             if (hour < 12) {
+               return "am"
+             } else {
+               return "pm"
+             }
+           }
+
+           //Main Clock Function
+           function clock() {
+
+             var date = new Date();
+
+             var dateYear = date.getFullYear();
+             var dateWeekDay = dateDayString(date.getDay());
+             var dateDate = date.getDate();
+             var dateMonth = dateMonthString(date.getMonth());
+
+             //Enable Military Time
+             //var dateHours = addZero(date.getHours());//24-HourClock
+
+             //Enable 12-Hour Time
+             var dateHours = addZero(antiMilitary(date.getHours()));// 12-HourClock
+
+             var dateMinutes = addZero(date.getMinutes());
+             var meridian = getMeridian(date.getHours());
+
+
+             var line = "<br/>";
+             //Writes Everything Formated Propertly to the Document
+             document.write(`The year is ${dateYear + line}
+             It is ${dateWeekDay}: Day ${dateDate} of ${dateMonth} in the year ${dateYear + line}
+             The time is ${dateHours + ":" + dateMinutes + meridian}`);
+
+             document.close();
+
+           }
+       </script>
+   </head>
+   <body>
+   </body>
+</html>
