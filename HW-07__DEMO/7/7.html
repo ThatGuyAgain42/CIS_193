@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" type="text/css" href="newCSS.css">
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<form onsubmit="return formSubmitted();">
+		<fieldset>
+			<legend>Personal Info</legend>
+			<label>
+				Name :
+				<input type="text" id="name" required>
+			</label>
+			<label>
+				Email :
+				<input type="email" id="email" required>
+			</label>
+			<br>
+			<button>Add new Contact</button>
+		</fieldset>
+	</form>
+
+	<h2>List of contacts</h2>
+	<div id="contacts"></div>
+	<p><button onclick="emptyList();">Empty</button>
+	</p>
+
+</body>
+
+</html>
